@@ -25,6 +25,7 @@ package 'php-fpm' do
   action :install
 end
 
+# package manager on Amazon linux installs www pool by default, get rid of it
 php_fpm_pool "www" do
   enable false
 end
