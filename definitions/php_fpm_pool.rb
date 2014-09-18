@@ -49,6 +49,7 @@ define :php_fpm_pool, :template => "pool.conf.erb", :enable => true do
         :php_options => params[:php_options] || {},
         :params => params
       )
+
       notifies :restart, "service[php-fpm]"
     end
   else

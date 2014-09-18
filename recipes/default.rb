@@ -22,7 +22,8 @@
 # 
 if node['cog_php-fpm']['version'] == '5.5'
 
-    package 'php55-fpm' do
+    package 'php-fpm' do
+        service_name 'php55-fpm'
         action :install
     end
 
