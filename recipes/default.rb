@@ -20,24 +20,50 @@
 # 
 # 
 # 
+if node['cog_php-fpm']['version'] == '5.5'
 
-package 'php-fpm' do
-  action :install
-end
+    package 'php55-fpm' do
+        action :install
+    end
 
-# package manager on Amazon linux installs www pool by default, get rid of it
-php_fpm_pool "www" do
-  enable false
-end
+    service "php-fpm-5.5" do
+      supports :start => true, :stop => true, :restart => true, :reload => true
+      action [ :enable ]
+    end
 
-template node['cog_php-fpm']['conf_file'] do
-  source "php-fpm.conf.erb"
-  mode 00644
-  owner "root"
-  group "root"
-end
+    # package manager on Amazon linux installs www pool by default, get rid of it
+    php_fpm_pool "www" do
+      enable false
+    end
 
-service "php-fpm" do
-  supports :start => true, :stop => true, :restart => true, :reload => true
-  action [ :enable ]
+    template node['cog_php-fpm']['conf_file'] do
+      source "php-fpm.conf.erb"
+      mode 00644
+      owner "root"
+      group "root"
+    end
+
+else
+
+    package 'php-fpm' do
+      action :install
+    end
+
+    # package manager on Amazon linux installs www pool by default, get rid of it
+    php_fpm_pool "www" do
+      enable false
+    end
+
+    template node['cog_php-fpm']['conf_file'] do
+      source "php-fpm.conf.erb"
+      mode 00644
+      owner "root"
+      group "root"
+    end
+
+    service "php-fpm" do
+      supports :start => true, :stop => true, :restart => true, :reload => true
+      action [ :enable ]
+    end
+
 end
