@@ -22,14 +22,16 @@
 # 
 if node['cog_php-fpm']['version'] == '5.5'
 
-    package 'php-fpm' do
-        service_name 'php55-fpm'
+    package 'php55-fpm' do
+
         action :install
     end
 
-    service "php-fpm-5.5" do
-      supports :start => true, :stop => true, :restart => true, :reload => true
-      action [ :enable ]
+    service "php-fpm" do
+        service_name 'php-fpm-5.5'
+
+        supports :start => true, :stop => true, :restart => true, :reload => true
+        action [ :enable ]
     end
 
     # package manager on Amazon linux installs www pool by default, get rid of it
