@@ -16,10 +16,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-# TODO
-# 
-# 
-# 
+ 
 if node['cog_php-fpm']['version'] == '5.5'
 
     package 'php55-fpm' do
