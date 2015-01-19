@@ -34,20 +34,20 @@ define :php_fpm_pool, :template => "pool.conf.erb", :enable => true do
       mode 00644
       cookbook params[:cookbook] || "cog_php-fpm"
       variables(
-        :pool_name => pool_name,
-        :listen => params[:listen],
-        :allowed_clients => params[:allowed_clients],
-        :user => params[:user],
-        :group => params[:group],
-        :process_manager => params[:process_manager],
-        :max_children => params[:max_children],
-        :start_servers => params[:start_servers],
-        :min_spare_servers => params[:min_spare_servers],
-        :max_spare_servers => params[:max_spare_servers],
-        :max_requests => params[:max_requests],
+        :pool_name            => pool_name,
+        :listen               => params[:listen],
+        :allowed_clients      => params[:allowed_clients],
+        :user                 => params[:user],
+        :group                => params[:group],
+        :process_manager      => params[:process_manager],
+        :max_children         => params[:max_children],
+        :start_servers        => params[:start_servers],
+        :min_spare_servers    => params[:min_spare_servers],
+        :max_spare_servers    => params[:max_spare_servers],
+        :max_requests         => params[:max_requests],
         :catch_workers_output => params[:catch_workers_output],
-        :php_options => params[:php_options] || {},
-        :params => params
+        :php_options          => params[:php_options] || {},
+        :params               => params
       )
 
       notifies :restart, "service[php-fpm]"
