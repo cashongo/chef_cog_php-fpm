@@ -1,0 +1,13 @@
+; File maintained by chef
+; MANUAL CHANGES WILL BE IGNORED
+
+include = <%= "#{node['cog_php-fpm']['pool_conf_dir']}/*.conf" %>
+
+[global]
+pid                             = <%= node['cog_php-fpm']['pid'] %>
+error_log                       = <%= node['cog_php-fpm']['error_log'] %>
+log_level                       = <%= node['cog_php-fpm']['log_level'] %>
+emergency_restart_threshold     = <%= node['cog_php-fpm']['emergency_restart_threshold'] %>
+emergency_restart_interval      = <%= node['cog_php-fpm']['emergency_restart_interval'] %>
+process_control_timeout         = <%= node['cog_php-fpm']['process_control_timeout'] %>
+daemonize                       = yes
